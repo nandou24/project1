@@ -7,6 +7,7 @@ import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrokenImageDirective } from './directives/broken-image.directive';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,9 @@ import { BrokenImageDirective } from './directives/broken-image.directive';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule
+  ],
+  providers:[
+    AuthGuard
   ]
 })
 export class AuthModule { }
