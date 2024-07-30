@@ -1,4 +1,4 @@
-export interface ICharacter {}
+
 
 export interface IApiResult {
   info: IInfo;

@@ -5,6 +5,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/enviroment';
 import Swal from 'sweetalert2';
+import { IUser, IUserPostDTO } from '../models/auth.models';
 
 @Injectable({
   providedIn: 'root'
@@ -64,6 +65,34 @@ export class AuthService {
 
   public goToPages() {
     this._router.navigateByUrl('/pages/characteres');
+  }
+
+  public registerUser(body: IUser){
+    console.log("Enviando valores desde servicio")
+
+    return this._http
+      .post<IUserPostDTO>(
+        `${environment.baseUrl}/api/auth/newUser`,body
+      )
+      .pipe(
+        map((data) => {
+          if (data.ok) {
+            return data.ok;
+          } else {
+            throw new Error('ERROR');
+          }
+        }),
+        catchError((err) => {
+          console.log(err.error.msg);
+          Swal.fire({
+            title: 'ERROR!',
+            text: err.error.msg,
+            icon: 'error',
+            confirmButtonText: 'Ok',
+          });
+          return of('ERROR');
+        })
+      );
   }
 
 }

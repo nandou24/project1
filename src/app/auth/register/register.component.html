@@ -3,14 +3,14 @@
       class="login-form"
       autocomplete="off"
       [formGroup]="myForm"
-      (ngSubmit)="register()"
+      (ngSubmit)="userRegister()"
     >
     <img appBrokenImage src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToiVM71fr9KYbkrr597N9i3FuTAVayyD1n5g&s" alt="logo-fray"
     style="margin: 20px;">
 
       <h1 class="login-form-title">REGISTRO</h1>
 
-      <div class="wrap-input m-b">
+      <div class="wrap-input">
         <span class="label-input">Nombre</span>
         <input
           class="input"
@@ -23,7 +23,7 @@
         </span>
       </div>
 
-      <div class="wrap-input m-b">
+      <div class="wrap-input">
         <span class="label-input">Email</span>
         <input
           class="input"
@@ -51,6 +51,21 @@
         </span>
       </div>
   
+      <div class="wrap-input">
+        <span class="label-input">Seleccione Cargo</span>
+        <select 
+          class="form-select"
+          formControlName="rol"
+          aria-label="Default select example">
+          <option value="1" selected>Cliente</option>
+          <option value="2">Administrador</option>
+      </select>
+      <span class="text-danger" *ngIf="fieldIsInvalidReactive('rol')">
+        Debe seleccionar un cargo
+      </span>
+      </div>
+      
+
       <div class="text-right p-t-8 p-b-31"></div>
   
       <div class="container-login-form-btn">
@@ -65,7 +80,7 @@
               'blue-invalid': myForm.invalid
             }"
           >
-            Inciar sesión
+            Registrar Cliente
           </button>
         </div>
       </div>
